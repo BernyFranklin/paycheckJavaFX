@@ -21,6 +21,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+// Imports for added features
+import javafx.application.Platform;
+import javafx.scene.layout.HBox;
+
 /*
  * This program takes user input for hours worked and pay rate and 
  * computes a paycheck accounting for overtime and taxes.
@@ -38,6 +42,8 @@ public class paycheckFX extends Application {
     private static Label     lblHours;
     private static Label     lblPayRate;
     private static Button    btnCompute;
+    private static Button    btnClear;
+    private static Button    btnExit;
     private static TextField txtHours;
     private static TextField txtPayRate;
     private static TextArea  txtPaycheck;
@@ -50,6 +56,7 @@ public class paycheckFX extends Application {
         Scene scene = new Scene(root, 450, 320);
         stage.setTitle("JavaFX Paycheck Project");
         stage.setResizable(false);
+        stage.setScene(scene);
         stage.show();
         
     }   // End of start stage
@@ -111,9 +118,9 @@ public class paycheckFX extends Application {
         
         // Display the paycheck
         txtPaycheck.setText(
-        String.format ("Your gross pay is $%.2f\n", grossPay) +
-        String.format ("Your taxes are    $%.2f\n", taxes)    +
-        String.format ("Your net pay is   $%.2f"  , netPay));
+        String.format ("Your gross pay is \t$%.2f\n", grossPay) +
+        String.format ("Your taxes are \t\t$%.2f\n", taxes)    +
+        String.format ("Your net pay is \t\t$%.2f"  , netPay));
         
     }   // End of btnComputeClick
     
@@ -168,6 +175,24 @@ public class paycheckFX extends Application {
             btnCompute.setOnAction( e -> btnComputeClick());
             btnCompute.setOnKeyPressed( e -> btnComputeClick());
             root.getChildren().add(btnCompute);
+            
+        btnClear = new Button ("Clear");
+            btnClear.setFont(font18);
+            btnClear.setLayoutX(170);
+            btnClear.setLayoutY(148);
+            btnClear.setMaxSize(110, 40);
+            btnClear.setMinSize(110, 40);
+            // Action code here
+            root.getChildren().add(btnClear);
+            
+        btnExit = new Button ("Exit");
+            btnExit.setFont(font18);
+            btnExit.setLayoutX(300);
+            btnExit.setLayoutY(148);
+            btnExit.setMaxSize(110, 40);
+            btnExit.setMinSize(110, 40);
+            //Action code here
+            root.getChildren().add(btnExit);
             
         txtPaycheck = new TextArea();
             txtPaycheck.setFont(font18);
